@@ -23,6 +23,9 @@ target/
 *.class
 *.db
 *.h2.db
+.mvn/
+mvnw
+mvnw.cmd
 
 # IntelliJ IDEA
 .idea/
@@ -46,3 +49,7 @@ out/
 
 # Generated files
 *.bak
+
+*.swp
+*~
+
