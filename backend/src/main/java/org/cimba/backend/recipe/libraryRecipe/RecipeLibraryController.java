@@ -17,8 +17,8 @@ import java.net.URI;
 @RequiredArgsConstructor
 @Validated
 public class RecipeLibraryController {
-    private RecipeLibraryServiceImpl service;
-    private RecipeLibraryMapper mapper;
+    private final RecipeLibraryServiceImpl service;
+    private final RecipeLibraryMapper mapper;
 
     /**
      * GET /api/library/recipes
