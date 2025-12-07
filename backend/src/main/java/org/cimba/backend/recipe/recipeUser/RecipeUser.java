@@ -8,11 +8,8 @@ import org.cimba.backend.user.User;
 
 import java.util.List;
 
-@Getter
 @Setter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
 @Entity
 @Table
 public class RecipeUser extends BaseEntity {

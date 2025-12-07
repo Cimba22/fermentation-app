@@ -8,14 +8,13 @@ import org.cimba.backend.ingredient.Ingredient;
 
 import java.util.List;
 
-
-@Entity
-@Table(name = "recipe_library")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "recipe_library")
 public class RecipeLibrary extends BaseEntity {
 
     private String name;
