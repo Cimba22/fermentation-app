@@ -3,6 +3,7 @@ package org.cimba.backend.recipe.libraryRecipe;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.cimba.backend.common.BaseEntity;
 import org.cimba.backend.ingredient.Ingredient;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
