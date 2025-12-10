@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 import org.cimba.backend.common.BaseEntity;
 import org.cimba.backend.ingredient.Ingredient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,13 +23,11 @@ public class RecipeLibrary extends BaseEntity {
     private String description;
     private String imageUrl;
 
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_library_ingredient",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    @ElementCollection
+    @CollectionTable(
+            name = "recipe_library_ingredients",
+            joinColumns = @JoinColumn(name = "recipe_id")
     )
-    private List<Ingredient> ingredients;
-
-
+    @Column(name = "ingredient", length = 500)
+    private List<String> ingredients = new ArrayList<>();
 }

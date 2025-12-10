@@ -2,12 +2,10 @@ package org.cimba.backend.recipe.libraryRecipe;
 
 import lombok.RequiredArgsConstructor;
 import org.cimba.backend.ingredient.Ingredient;
-import org.cimba.backend.ingredient.IngredientRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**RecipeLibraryMapper — обычный маппер, который:
@@ -20,33 +18,26 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RecipeLibraryMapper {
 
-    private final IngredientRepository ingredientRepository;
 
     public RecipeLibrary toEntity(RecipeLibraryRequest req) {
         return RecipeLibrary.builder()
                 .name(req.name())
                 .description(req.description())
                 .imageUrl(req.imageUrl())
-                // ингредиенты устанавливаются сервисом, иначе маппер слишком умный станет
+                .ingredients(req.ingredients() != null ? req.ingredients() : List.of())
                 .build();
     }
 
     public RecipeLibraryResponse toResponse(RecipeLibrary entity) {
-        List<Long> ingredientIds = entity.getIngredients() == null
-                ? Collections.emptyList()
-                : entity.getIngredients().stream()
-                .map(Ingredient::getId)
-                .toList();
-
-        return RecipeLibraryResponse.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .description(entity.getDescription())
-                .imageUrl(entity.getImageUrl())
-                .ingredientIds(ingredientIds)
-                .createdDate(entity.getCreatedDate())
-                .lastModifiedDate(entity.getLastModifiedDate())
-                .build();
+        return new RecipeLibraryResponse(
+                entity.getId(),
+                entity.getName(),
+                entity.getDescription(),
+                entity.getImageUrl(),
+                entity.getIngredients(),
+                entity.getCreatedDate(),
+                entity.getLastModifiedDate()
+        );
     }
 
     public List<Ingredient> resolveIngredients(List<Long> ids) {

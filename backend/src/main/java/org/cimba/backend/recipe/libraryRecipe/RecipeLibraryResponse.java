@@ -14,7 +14,7 @@ public record RecipeLibraryResponse(
         String name,
         String description,
         String imageUrl,
-        List<Long> ingredientIds,
+        List<String> ingredients,
         LocalDateTime createdDate,
         LocalDateTime lastModifiedDate
 ) {}

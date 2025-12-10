@@ -16,6 +16,5 @@ public record RecipeLibraryRequest(
 
         String imageUrl,
 
-        // список id ингредиентов из справочника
-        List<Long> ingredientIds
+        List<String> ingredients
 ) {}

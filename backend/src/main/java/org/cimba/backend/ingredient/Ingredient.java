@@ -1,23 +1,18 @@
 package org.cimba.backend.ingredient;
 
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Entity
-@Table(name = "ingredient")
+import lombok.*;
+
+
+import java.util.List;
+
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Ingredient {
+    private List<String> ingredients;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true)
-    private String name;
 }
