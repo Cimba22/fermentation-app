@@ -40,9 +40,5 @@ public class RecipeLibraryMapper {
         );
     }
 
-    public List<Ingredient> resolveIngredients(List<Long> ids) {
-        if (ids == null || ids.isEmpty()) return Collections.emptyList();
-        return ingredientRepository.findAllById(ids);
-    }
 }
 
