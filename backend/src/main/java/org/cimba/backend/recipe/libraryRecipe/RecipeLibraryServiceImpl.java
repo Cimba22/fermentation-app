@@ -39,10 +39,6 @@ public class RecipeLibraryServiceImpl implements RecipeLibraryService {
 
         entity.setCreatedBy(user.getId());
 
-        if (request.ingredientIds() != null) {
-            entity.setIngredients(mapper.resolveIngredients(request.ingredientIds()));
-        }
-
         return libraryRepository.save(entity);
     }
 
@@ -60,9 +56,6 @@ public class RecipeLibraryServiceImpl implements RecipeLibraryService {
         existing.setDescription(request.description());
         existing.setImageUrl(request.imageUrl());
 
-        if (request.ingredientIds() != null) {
-            existing.setIngredients(mapper.resolveIngredients(request.ingredientIds()));
-        }
 
         return libraryRepository.save(existing);
     }
