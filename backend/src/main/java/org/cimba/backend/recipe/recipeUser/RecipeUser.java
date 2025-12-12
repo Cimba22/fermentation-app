@@ -2,14 +2,19 @@ package org.cimba.backend.recipe.recipeUser;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.cimba.backend.common.BaseEntity;
 import org.cimba.backend.ingredient.Ingredient;
 import org.cimba.backend.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 @Entity
 @Table
 public class RecipeUser extends BaseEntity {
@@ -19,16 +24,16 @@ public class RecipeUser extends BaseEntity {
     private String imageURL;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_user_ingredient",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    @ElementCollection
+    @CollectionTable(
+            name = "recipe_library_ingredients",
+            joinColumns = @JoinColumn(name = "recipe_id")
     )
-    private List<Ingredient> ingredients;
+    @Column(name = "ingredient", length = 500)
+    private List<String> ingredients = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User owner;
 
 }
